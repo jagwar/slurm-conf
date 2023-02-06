@@ -30,7 +30,7 @@ mkdir -p /var/spool/slurmd
 chown -R slurm:slurm /var/lib/slurm /var/spool/slurmd
 rm -rf ${TEMP_DIR}
 ln -s /admin/slurm/etc  /opt/slurm/etc
-cp /opt/slurm/etc/munge.key /etc/munge/
+#cp /opt/slurm/etc/munge.key /etc/munge/
 systemctl restart munge.service
 cat >/usr/lib/systemd/system/slurmd.service <<EOF
 [Unit]
