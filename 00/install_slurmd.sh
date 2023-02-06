@@ -5,7 +5,8 @@ set -e
 # apt install -y build-essential pkg-config libcurl4-openssl-dev libdbus-1-dev
 rm /usr/local/cuda
 ln -s /usr/local/cuda-11.7 /usr/local/cuda
-cp /admin/hosts/888-slurm.sh /etc/profile.d/
+#Todo find what's this file: 888-slurm.sh
+#cp /admin/hosts/888-slurm.sh /etc/profile.d/
 
 # needed on DLAMI BaseMeta
 apt-get  -q -o DPkg::Lock::Timeout=240 install -y munge libmunge-dev hwloc libhwloc-dev numactl iftop \
