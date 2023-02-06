@@ -20,7 +20,7 @@ TEMP_DIR="/tmp/slurm_tmp"
 rm -rf  ${TEMP_DIR}
 mkdir -p ${TEMP_DIR}
 pushd ${TEMP_DIR}
-#curl -s ${SLURM_URL} | tar -jx --strip-components=1 && ./configure -q --prefix=/opt/slurm && make -s -j 64 && make -s install
+curl -s ${SLURM_URL} | tar -jx --strip-components=1 && ./configure -q --prefix=/opt/slurm && make -s -j 64 && make -s install
 tar -jx --strip-components=1 -f /admin/slurm/${SLURM_VER} && ./configure -q --prefix=/opt/slurm && make -s -j 64 && make -s install
 #echo "CgroupMountpoint=/sys/fs/cgroup" |sudo tee /opt/slurm/etc/cgroup.conf
 popd
