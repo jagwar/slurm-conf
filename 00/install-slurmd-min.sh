@@ -15,6 +15,7 @@ apt-get  -q -o DPkg::Lock::Timeout=240 install -y munge libmunge-dev hwloc libhw
   libpmix-dev librrd-dev bzip2 libjson-c-dev libhttp-parser-dev
 #we should probably get this from s3 and not hit their web servers
 adduser --quiet --system --group --uid 401 --no-create-home --home /nonexistent slurm || true
+#todo check slurm user
 SLURM_VER="slurm-22.05.5.tar.bz2"
 SLURM_URL=https://download.schedmd.com/slurm/${SLURM_VER}
 TEMP_DIR="/tmp/slurm_tmp"
@@ -36,15 +37,15 @@ systemctl restart munge.service
 cat >/usr/lib/systemd/system/slurmd.service <<EOF
 [Unit]
 Description=Slurm node daemon
-After=munge.service network.target remote-fs.target admin.mount fsx.mount opt-df.mount #use your own mounts here as precondition to start slurmd
-Wants=munge.service network.target remote-fs.target admin.mount fsx.mount opt-df.mount
+After=munge.service #use your own mounts here as precondition to start slurmd
+Wants=munge.service
 #ConditionPathExists=/opt/slurm/etc/slurm.conf
 Documentation=man:slurmd(8)
 [Service]
 Type=simple
 #ExecCondition=bash -c "cd /opt/slurm/etc/ >& /dev/null"
 EnvironmentFile=-/opt/slurm/etc/default/slurmd
-ExecStart=/opt/slurm/sbin/slurmd -D \$SLURMD_OPTIONS
+ExecStart=/opt/slurm/sbin/slurmd
 ExecReload=/bin/kill -HUP \$MAINPID
 PIDFile=/run/slurmd.pid
 KillMode=process
@@ -57,3 +58,4 @@ TasksMax=infinity
 WantedBy=multi-user.target graphical.target
 EOF
 cp /usr/lib/systemd/system/slurmd.service /etc/systemd/system/
+
