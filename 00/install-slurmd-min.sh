@@ -34,28 +34,5 @@ rm -rf ${TEMP_DIR}
 ln -s /admin/slurm/etc  /opt/slurm/etc
 #cp /opt/slurm/etc/munge.key /etc/munge/
 systemctl restart munge.service
-cat >/usr/lib/systemd/system/slurmd.service <<EOF
-[Unit]
-Description=Slurm node daemon
-After=munge.service #use your own mounts here as precondition to start slurmd
-Wants=munge.service
-#ConditionPathExists=/opt/slurm/etc/slurm.conf
-Documentation=man:slurmd(8)
-[Service]
-Type=simple
-#ExecCondition=bash -c "cd /opt/slurm/etc/ >& /dev/null"
-EnvironmentFile=-/opt/slurm/etc/default/slurmd
-ExecStart=/opt/slurm/sbin/slurmd
-ExecReload=/bin/kill -HUP \$MAINPID
-PIDFile=/run/slurmd.pid
-KillMode=process
-LimitNOFILE=131072
-LimitMEMLOCK=infinity
-LimitSTACK=infinity
-Delegate=yes
-TasksMax=infinity
-[Install]
-WantedBy=multi-user.target graphical.target
-EOF
 cp /usr/lib/systemd/system/slurmd.service /etc/systemd/system/
 
