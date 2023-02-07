@@ -12,6 +12,6 @@ p4de1 10.52.17.11
 p4de2 10.52.17.12
 EOF
 
-headnode 10.52.17.10
-p4de1 10.52.17.11
-p4de2 10.52.17.12
+systemctl restart slurmd
+systemctl status slurmd
+
