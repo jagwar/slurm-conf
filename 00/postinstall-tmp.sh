@@ -3,7 +3,7 @@
 #mount /admin/slurm/etc
 
 mkdir -p /admin/slurm/etc
-wget https://raw.githubusercontent.com/jagwar/slurm-conf/main/00/custom-scripts-and-configs/test/slurm.conf /admin/slurm/etc
+wget https://raw.githubusercontent.com/jagwar/slurm-conf/main/00/custom-scripts-and-configs/test/slurm.conf -P /admin/slurm/etc
 #todo DNS
 
 cat >/etc/hosts <<EOF
