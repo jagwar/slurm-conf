@@ -3,6 +3,16 @@ set -x
 set -e
 #needed on ubuntu2004
 apt update
+mkdir -p /admin/slurm/etc
+wget https://raw.githubusercontent.com/jagwar/slurm-conf/main/00/custom-scripts-and-configs/test/slurm.conf -P /admin/slurm/etc
+#todo DNS
+
+cat >>/etc/hosts <<EOF
+headnode 10.52.17.10
+p4de1 10.52.17.11
+p4de2 10.52.17.12
+EOF
+
 # apt install -y build-essential pkg-config libcurl4-openssl-dev libdbus-1-dev
 #rm /usr/local/cuda
 #ln -s /usr/local/cuda-11.7 /usr/local/cuda
@@ -34,5 +44,6 @@ rm -rf ${TEMP_DIR}
 ln -s /admin/slurm/etc  /opt/slurm/etc
 #cp /opt/slurm/etc/munge.key /etc/munge/
 systemctl restart munge.service
-cp /usr/lib/systemd/system/slurmd.service /etc/systemd/system/
+systemctl restart slurmd
+systemctl status slurmd
 
