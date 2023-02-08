@@ -8,9 +8,9 @@ wget https://raw.githubusercontent.com/jagwar/slurm-conf/main/00/custom-scripts-
 #todo DNS
 
 cat >>/etc/hosts <<EOF
-headnode 10.52.17.10
-p4de1 10.52.17.11
-p4de2 10.52.17.12
+10.52.17.10 headnode
+10.52.17.11 p4de1
+10.52.17.12 p4de2
 EOF
 
 # apt install -y build-essential pkg-config libcurl4-openssl-dev libdbus-1-dev
