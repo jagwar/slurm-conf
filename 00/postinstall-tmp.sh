@@ -15,3 +15,11 @@ EOF
 systemctl restart slurmd
 systemctl status slurmd
 
+
+
+    mv -f munge.key /etc/munge/munge.key
+    chown munge:munge /etc/munge/munge.key
+    chmod 600 /etc/munge/munge.key
+    mkdir -p /admin/slurm/etc
+    mkdir 
+    cp /etc/munge/munge.key /home/ubuntu/.munge/.munge.key
