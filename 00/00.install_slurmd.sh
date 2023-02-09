@@ -34,7 +34,7 @@ systemctl restart munge.service
 cat >/usr/lib/systemd/system/slurmd.service <<EOF
 [Unit]
 Description=Slurm node daemon
-After=munge.service network.target remote-fs.target admin.mount #use your own mounts here as precondition to start slurmd
+After=munge.service network.target remote-fs.target admin.mount
 Wants=munge.service network.target remote-fs.target admin.mount
 #ConditionPathExists=/opt/slurm/etc/slurm.conf
 Documentation=man:slurmd(8)
