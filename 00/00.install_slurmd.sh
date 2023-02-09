@@ -12,7 +12,7 @@ apt-get  -q -o DPkg::Lock::Timeout=240 install -y munge libmunge-dev hwloc libhw
   libmunge-dev liblz4-dev libfreeipmi-dev  libipmimonitoring-dev  libyaml-dev \
   libpmix-dev librrd-dev bzip2 libjson-c-dev libhttp-parser-dev
 #we should probably get this from s3 and not hit their web servers
-adduser --quiet --system --group --uid 401 --no-create-home --home /nonexistent slurm || true
+adduser --quiet --system --group --uid 64030 --no-create-home --home /nonexistent slurm || true
 SLURM_VER="slurm-22.05.5.tar.bz2"
 SLURM_URL=https://download.schedmd.com/slurm/${SLURM_VER}
 TEMP_DIR="/tmp/slurm_tmp"
