@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 set -e
+export CUSTOM_CUDA_VERSION=11.6
 cd /opt
 sudo git clone https://github.com/NVIDIA/nccl.git
 cd nccl
